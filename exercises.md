@@ -87,7 +87,7 @@ không có bộ nhớ dài hạn, không kiểm duyệt nội dung...)? Đề xu
 thiện cụ thể và mô tả ngắn cách triển khai:**
 - Hạn chế lớn nhất: Trợ lý đang mắc "chứng mất trí nhớ ngắn hạn". Việc cắt cứng lịch sử chỉ giữ lại 3 lượt hội thoại gần nhất (history = history[-6:]) khiến mô hình mất hoàn toàn bối cảnh nếu người dùng hỏi lại một thông tin họ đã cung cấp ở lượt thứ 1.
 - Đề xuất cải thiện: Triển khai Summarization Memory kết hợp với lịch sử ngắn hạn.
-- Cách triển khai ngắn gọn: Thay vì xóa vĩnh viễn các tin nhắn cũ khi mảng history đạt giới hạn 6 tin nhắn, ta tách 2 tin nhắn cũ nhất ra và gửi cho một model nhỏ (như gpt-4o-mini chạy ngầm) với prompt: "Hãy tóm tắt ngắn gọn thông tin quan trọng trong đoạn hội thoại sau". Chuỗi tóm tắt trả về sẽ được lưu vào một biến summary_memory và được tự động cộng dồn vào system prompt (ví dụ: [System prompt] + [Bối cảnh trước đó: {summary_memory}]). Bằng cách này, bot vẫn nhớ được toàn bộ diễn biến cuộc trò chuyện cốt lõi từ đầu đến cuối mà token không bị phình to.
+- Cách triển khai ngắn gọn: Thay vì xóa vĩnh viễn các tin nhắn cũ khi mảng history đạt giới hạn 6 tin nhắn, ta tách 2 tin nhắn cũ nhất ra và gửi cho một model nhỏ (như gpt-4o-mini chạy ngầm) với prompt: "Hãy tóm tắt ngắn gọn thông tin quan trọng trong đoạn hội thoại sau". Chuỗi tóm tắt trả về sẽ được lưu vào một biến summary_memory và được tự động cộng dồn vào system prompt. Bằng cách này, bot vẫn nhớ được toàn bộ diễn biến cuộc trò chuyện cốt lõi từ đầu đến cuối mà token không bị phình to.
 
 ---
 
